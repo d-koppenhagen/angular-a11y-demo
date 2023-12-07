@@ -1,0 +1,91 @@
+<form [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="form-field">
+    <label class="elm-label" for="title">Title</label>
+    <input
+      type="text"
+      placeholder="My notification title"
+      formControlName="title"
+      id="title"
+      aria-describedby="titlehint"
+      [attr.aria-invalid]="titleError"
+    />
+    @if(titleError) {
+    <p id="titlehint" class="description">
+      You must enter a short title (max. 20 characters).
+    </p>
+    }
+  </div>
+
+  <div class="form-field">
+    <label class="elm-label" for="description">Description</label>
+    <textarea
+      type="text"
+      placeholder="My notification description"
+      formControlName="description"
+      id="description"
+      aria-invalid="false"
+    ></textarea>
+  </div>
+
+  <div class="form-field-group">
+    <div class="form-field">
+      <!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->
+      <label id="politeness">Politeness</label>
+      <ul
+        class="list-box"
+        cdkListbox
+        cdkListboxOrientation="horizontal"
+        aria-labelledby="politeness"
+        formControlName="politeness"
+      >
+        <li cdkOption="off">Off</li>
+        <li cdkOption="polite">Polite</li>
+        <li cdkOption="assertive">Assertive</li>
+      </ul>
+    </div>
+
+    <div class="form-field">
+      <label for="role">Role</label>
+      <select formControlName="role" id="role" aria-invalid="false">
+        <option value="status" selected>status</option>
+        <option value="alert">alert</option>
+        <option value="marquee">marquee</option>
+        <option value="log">log</option>
+        <option value="progress">progress</option>
+        <option value="timer">timer</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-field-group">
+    <div class="form-field">
+      <label class="elm-label" for="timer">Timer</label>
+      <input
+        type="number"
+        formControlName="timer"
+        id="timer"
+        aria-describedby="timerhint"
+        [attr.aria-invalid]="timerError"
+      />
+      @if(timerError) {
+      <p id="timerhint" class="description">A timer must be set.</p>
+      }
+    </div>
+
+    <div class="form-field">
+      <label class="elm-label" for="duration">Duration</label>
+      <input
+        type="number"
+        formControlName="duration"
+        id="duration"
+        aria-describedby="durationhint"
+        [attr.aria-invalid]="durationError"
+      />
+      @if(durationError) {
+      <p id="durationhint" class="description">A duration must be set.</p>
+      }
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Save</button>
+</form>

@@ -1,0 +1,34 @@
+@if (alertsSorted().length) {
+<table>
+  <caption>
+    The table shows all configured alerts.
+    <span class="cdk-visually-hidden"
+      >Active alerts are listed first. Inactive alerts that were already
+      presented are listed at the end.</span
+    >
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col" aria-sort="ascending">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Role</th>
+      <th scope="col">Politeness</th>
+      <th scope="col">Timer</th>
+      <th scope="col">Duration</th>
+      <th scope="col" colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (alert of activeAlerts(); track $index;) {
+    <tr app-alert-table-entry [alert]="alert"></tr>
+    }
+  </tbody>
+  <tbody class="inactive">
+    @for (alert of nonActiveAlerts(); track $index;) {
+    <tr app-alert-table-entry [alert]="alert"></tr>
+    }
+  </tbody>
+</table>
+} @else {
+<p>No alerts configured.</p>
+}

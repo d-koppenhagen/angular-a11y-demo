@@ -1,0 +1,20 @@
+<th scope="row">{{ alert.title }}</th>
+<td>{{ alert.description }}</td>
+<td>{{ alert.role }}</td>
+<td>{{ alert.politeness }}</td>
+<td>{{ alert.timer }}</td>
+<td>{{ alert.duration }}</td>
+<td>
+  <button
+    (click)="removeAlert(alert.title)"
+    title="Remove Alert"
+    aria-label="Remove Alert"
+  >
+    🗑️
+  </button>
+</td>
+<td>
+  <button (click)="startAlert(alert.title)" [disabled]="!!alert.active">
+    {{ alert.active ? "Active" : "Activate" }}
+  </button>
+</td>

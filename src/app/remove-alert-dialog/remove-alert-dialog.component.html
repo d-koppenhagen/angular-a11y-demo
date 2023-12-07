@@ -1,0 +1,10 @@
+<header>
+  <h1>Delete alert</h1>
+</header>
+<main>
+  <p>Do you really want to delete the "{{ data.title }}" alert?</p>
+</main>
+<footer>
+  <button (click)="dialogRef.close(true)">OK</button>
+  <button (click)="dialogRef.close(false)">Cancel</button>
+</footer>

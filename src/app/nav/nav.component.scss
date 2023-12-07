@@ -1,0 +1,24 @@
+nav {
+  display: flex;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.button {
+  border-radius: 2.75rem;
+}
+
+nav .button:nth-child(1) {
+  --pill-accent: var(--bright-blue);
+}
+nav .button:nth-child(2) {
+  --pill-accent: var(--french-violet);
+}
+nav .button:nth-child(3) {
+  --pill-accent: var(--electric-violet);
+}
+
+nav svg {
+  margin-inline-start: 0.25rem;
+}
