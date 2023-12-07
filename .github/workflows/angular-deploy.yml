@@ -25,7 +25,7 @@ jobs:
       run: npm ci
 
     - name: Build Angular App
-      run: npm run build
+      run: npm run build -- --base-href="/angular-a11y-demo/"
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
