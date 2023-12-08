@@ -1,8 +1,9 @@
+import { A11yModule, AriaLivePoliteness } from '@angular/cdk/a11y';
+import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AlertService, Role, Alert } from '../alert.service';
-import { AriaLivePoliteness, A11yModule } from '@angular/cdk/a11y';
-import { CdkListbox, CdkOption } from '@angular/cdk/listbox';
+
+import { Alert, AlertService, Role } from '../alert.service';
 
 @Component({
   selector: 'app-alert-form',
@@ -31,11 +32,11 @@ export class AlertFormComponent {
       nonNullable: true,
       validators: Validators.required,
     }),
-    timer: new FormControl<number>(5000, {
+    timer: new FormControl(5000, {
       nonNullable: true,
       validators: Validators.required,
     }),
-    duration: new FormControl<number>(3000, {
+    duration: new FormControl(3000, {
       nonNullable: true,
       validators: Validators.required,
     }),
@@ -43,21 +44,9 @@ export class AlertFormComponent {
 
   constructor(private alertService: AlertService) {}
 
-  get titleError() {
-    const title = this.getField('title')
-    return title?.invalid && (title.dirty || title.touched)
-  }
-  get timerError() {
-    const title = this.getField('timer')
-    return title?.invalid && (title.dirty || title.touched)
-  }
-  get durationError() {
-    const title = this.getField('duration')
-    return title?.invalid && (title.dirty || title.touched)
-  }
-
-  private getField(fieldName: string) {
-    return this.form.get(fieldName)
+  isInvalid(controlName: keyof typeof this.form.controls) {
+    const control = this.form.controls[controlName];
+    return control.invalid && (control.dirty || control.touched);
   }
 
   submitForm() {

@@ -7,9 +7,9 @@
       formControlName="title"
       id="title"
       aria-describedby="titlehint"
-      [attr.aria-invalid]="titleError"
+      [attr.aria-invalid]="isInvalid('title')"
     />
-    @if(titleError) {
+    @if(isInvalid('title')) {
     <p id="titlehint" class="description">
       You must enter a short title (max. 20 characters).
     </p>
@@ -65,9 +65,9 @@
         formControlName="timer"
         id="timer"
         aria-describedby="timerhint"
-        [attr.aria-invalid]="timerError"
+        [attr.aria-invalid]="isInvalid('timer')"
       />
-      @if(timerError) {
+      @if(isInvalid('timer')) {
       <p id="timerhint" class="description">A timer must be set.</p>
       }
     </div>
@@ -79,9 +79,9 @@
         formControlName="duration"
         id="duration"
         aria-describedby="durationhint"
-        [attr.aria-invalid]="durationError"
+        [attr.aria-invalid]="isInvalid('duration')"
       />
-      @if(durationError) {
+      @if(isInvalid('duration')) {
       <p id="durationhint" class="description">A duration must be set.</p>
       }
     </div>
