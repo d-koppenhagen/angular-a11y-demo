@@ -1,6 +1,7 @@
+import { Component, computed, Signal } from '@angular/core';
+
 import { AlertTableEntryComponent } from '../alert-table-entry/alert-table-entry.component';
 import { Alert, AlertService } from './../alert.service';
-import { Component, Signal, computed } from '@angular/core';
 
 @Component({
   selector: 'app-alert-table',
@@ -12,7 +13,7 @@ import { Component, Signal, computed } from '@angular/core';
 export class AlertTableComponent {
   private readonly alerts;
   public alertsSorted: Signal<Alert[]> = computed(() => {
-    return this.alerts().sort((a, b) => a.title.localeCompare(b.title));
+    return [...this.alerts().sort((a, b) => a.title.localeCompare(b.title))];
   });
   public activeAlerts: Signal<Alert[]> = computed(() => {
     return this.alertsSorted().filter((a) => !!a.active);
