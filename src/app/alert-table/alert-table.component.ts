@@ -16,10 +16,10 @@ export class AlertTableComponent {
     return [...this.alerts().sort((a, b) => a.title.localeCompare(b.title))];
   });
   public activeAlerts: Signal<Alert[]> = computed(() => {
-    return this.alertsSorted().filter((a) => !!a.active);
+    return [...this.alertsSorted().filter((a) => !!a.active)];
   });
   public nonActiveAlerts: Signal<Alert[]> = computed(() => {
-    return this.alertsSorted().filter((a) => !a.active);
+    return [...this.alertsSorted().filter((a) => !a.active)];
   });
 
 
