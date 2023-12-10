@@ -1,9 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import {
   animate,
   state,
@@ -16,15 +11,7 @@ import {
   AriaLivePoliteness,
   LiveAnnouncer,
 } from '@angular/cdk/a11y';
-import {
-  Observable,
-  concatMap,
-  of,
-  switchMap,
-  take,
-  tap,
-  timer
-} from 'rxjs';
+import { concat, defer, map, tap, timer } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -62,44 +49,31 @@ export class AlertRegionComponent {
   @Output() deactivated = new EventEmitter<void>();
   @Input() toastState: string = 'active'; // You can use this to trigger enter/leave animations
 
-  readonly show$ = new Observable<boolean>(observer => {
-    console.log(`[Creation: ${this.title} - sec: ${new Date().getSeconds()}]`)
-    const firstTimer = timer(this.timer); // Emit "true" after 3 seconds
-    const secondTimer = timer(this.timer + this.duration); // Emit "false" after 20 seconds
+  readonly show$ = defer(() => {
+    // Emit "true" after e.g. 3 seconds and announce
+    const firstTimer = timer(this.timer).pipe(
+      map(() => true),
+      tap(() => this.announce())
+    );
 
-    const subscription1 = firstTimer.subscribe(() => {
-      observer.next(true);
-      console.log(`[Start: ${this.title} - sec: ${new Date().getSeconds()}]`)
-      this.announce()
-    });
+    // Emit "false" after e.g. 20 seconds
+    const secondTimer = timer(this.duration).pipe(
+      map(() => false),
+      tap(() => this.closeMessage())
+    );
 
-    const subscription2 = secondTimer.subscribe(() => {
-      observer.next(false);
-      observer.complete();
-    });
-
-    // Clean up subscriptions when the source observable is unsubscribed
-    return () => {
-      subscription1.unsubscribe();
-      subscription2.unsubscribe();
-      console.log(`[End: ${this.title} - sec: ${new Date().getSeconds()}]`)
-      this.closeMessage()
-    };
+    return concat(firstTimer, secondTimer);
   });
 
   constructor(private liveAnnouncer: LiveAnnouncer) {}
 
   private announce() {
-    const description = this.description ? `: ${this.description}` : ""
-    this.liveAnnouncer.announce(`${this.title}${description}`)
+    const description = this.description ? `: ${this.description}` : '';
+    this.liveAnnouncer.announce(`${this.title}${description}`);
   }
 
   private closeMessage() {
-    this.deactivated.emit()
-    this.liveAnnouncer.clear()
+    this.deactivated.emit();
+    this.liveAnnouncer.clear();
   }
-
-  // ngOnDestroy() {
-  //   this.subscription?.unsubscribe();
-  // }
 }

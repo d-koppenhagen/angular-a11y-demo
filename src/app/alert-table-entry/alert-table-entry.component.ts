@@ -16,9 +16,9 @@ import { RemoveAlertDialogComponent } from '../remove-alert-dialog/remove-alert-
   styleUrl: './alert-table-entry.component.scss',
 })
 export class AlertTableEntryComponent {
-  @Input({ required: true }) alert!: Alert;
+  @Input({ required: true }) alert?: Alert;
 
-  constructor(private alertService: AlertService, public dialog: Dialog) {}
+  constructor(private alertService: AlertService, private dialog: Dialog) {}
 
   removeAlert(title: string) {
     const dialogRef = this.dialog.open<string>(RemoveAlertDialogComponent, {

@@ -77,15 +77,15 @@ export class AlertService {
   constructor() {}
 
   addAlert(alert: Alert) {
-    this.alerts.set([
-      ...this.alerts(),
+    this.alerts.update((value) => [
+      ...value,
       { ...alert, active: true }
     ])
   }
 
   private activateOrDeactivateAlert(title: string, active: boolean) {
-    this.alerts.set([
-      ...this.alerts().map(a => {
+    this.alerts.update((value) => [
+      ...value.map(a => {
         if (a.title === title) {
           a.active = active
         }
@@ -95,7 +95,7 @@ export class AlertService {
   }
 
   removeAlert(title: string) {
-    this.alerts.set(this.alerts().filter(a => a.title !== title))
+    this.alerts.update( (value) => value.filter(a => a.title !== title))
   }
 
   activateAlert(title: string) {
