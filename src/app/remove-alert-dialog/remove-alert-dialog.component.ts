@@ -11,6 +11,6 @@ import { Component, Inject, inject } from '@angular/core';
 export class RemoveAlertDialogComponent {
   data: { title: string } = inject(DIALOG_DATA)
   constructor(
-    dialogRef: DialogRef<boolean>,
+    public dialogRef: DialogRef<boolean>,
   ) {}
 }
