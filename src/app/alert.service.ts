@@ -18,60 +18,60 @@ export type Alert = {
 })
 export class AlertService {
   public alerts = signal<Alert[]>([
-    // {
-    //   role: "log",
-    //   title: "Log",
-    //   description: "A simple log",
-    //   politeness: "polite",
-    //   timer: 2000,
-    //   duration: 3000,
-    //   active: true
-    // },
-    // {
-    //   role: "alert",
-    //   title: "Alert",
-    //   description: "A very important alert message",
-    //   politeness: "assertive",
-    //   timer: 200,
-    //   duration: 2000,
-    //   active: true
-    // },
-    // {
-    //   role: "status",
-    //   title: "Status",
-    //   description: "A status alert which isn't that important",
-    //   politeness: "polite",
-    //   timer: 3000,
-    //   duration: 2000,
-    //   active: true
-    // },
-    // {
-    //   role: "marquee",
-    //   title: "Marquee",
-    //   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.",
-    //   politeness: "polite",
-    //   timer: 500,
-    //   duration: 10000,
-    //   active: true
-    // },
-    // {
-    //   role: "progress",
-    //   title: "Progress",
-    //   description: "Step 1 of 4 finished.",
-    //   politeness: "polite",
-    //   timer: 6000,
-    //   duration: 3000,
-    //   active: true
-    // },
-    // {
-    //   role: "timer",
-    //   title: "Timer",
-    //   description: "2 minutes left",
-    //   politeness: "polite",
-    //   timer: 7000,
-    //   duration: 3000,
-    //   active: true
-    // },
+    {
+      role: "log",
+      title: "Log",
+      description: "A simple log",
+      politeness: "polite",
+      timer: 2000,
+      duration: 3000,
+      active: true
+    },
+    {
+      role: "alert",
+      title: "Alert",
+      description: "A very important alert message",
+      politeness: "assertive",
+      timer: 200,
+      duration: 2000,
+      active: true
+    },
+    {
+      role: "status",
+      title: "Status",
+      description: "A status alert which isn't that important",
+      politeness: "polite",
+      timer: 3000,
+      duration: 2000,
+      active: true
+    },
+    {
+      role: "marquee",
+      title: "Marquee",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.",
+      politeness: "polite",
+      timer: 500,
+      duration: 10000,
+      active: true
+    },
+    {
+      role: "progress",
+      title: "Progress",
+      description: "Step 1 of 4 finished.",
+      politeness: "polite",
+      timer: 6000,
+      duration: 3000,
+      active: true
+    },
+    {
+      role: "timer",
+      title: "Timer",
+      description: "2 minutes left",
+      politeness: "polite",
+      timer: 7000,
+      duration: 3000,
+      active: true
+    },
   ])
 
   constructor() {}
@@ -103,6 +103,7 @@ export class AlertService {
   }
 
   deactivateAlert(title: string) {
+    console.log('❌ deactivate', title)
     this.activateOrDeactivateAlert(title, false)
   }
 }

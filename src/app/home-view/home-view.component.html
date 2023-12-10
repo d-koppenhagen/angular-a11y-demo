@@ -2,6 +2,22 @@
 <h1>Hello, meetup people 👋🏼</h1>
 <p>Let's talk about accessibility and how Angular helps us to improve it.</p>
 
+<h2>Contact</h2>
+<ul>
+  <li><a href="mailto:mail@k9n.dev" target="_blank">Mail: mail&#64;k9n.dev</a></li>
+  <li><a href="https://github.com/d-koppenhagen" target="_blank">Github: d-koppenhagen</a></li>
+  <li><a href="https://twitter.com/d_koppenhagen" target="_blank">X (Twitter): d_koppenhagen</a></li>
+  <li><a href="https://linkedin.com/in/d-koppenhagen" target="_blank">LinkedIn: d-koppenhagen</a></li>
+  <li><a href="https://xing.com/profile/Danny_Koppenhagen" target="_blank">Xing: Danny_Koppenhagen</a></li>
+  <li><a href="https://techhub.social/@k9n" target="_blank">Mastodon: techhub.social/&#64;k9n</a></li>
+</ul>
+
+<h2>Deferred Loading</h2>
+
+<p>When using deferred loading, you should keep in mind, that screenreaders probably don't notice changes once the deferred block is loaded when already in focus.</p>
+
+<h3>on timer</h3>
+
 <p aria-atomic="true" aria-live="polite">
 @defer (on timer(10000)) {
   <ngx-lipsum [config]="config"></ngx-lipsum>
@@ -13,3 +29,15 @@
   Error...
 }
 </p>
+
+<h3>on viewport</h3>
+
+<div aria-atomic="true" aria-live="polite">
+@defer (on viewport) {
+  <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w1nzeme4ix1lgw38epwb.jpeg" alt="a woman with her hands on her knees, appearing to be squinting at an object in the distance captioned When someone says they don't need web accessibility" loading="lazy" width="460" height="603">
+} @placeholder(minimum 3000) {
+  <div class="placeholder" tabindex="0"></div>
+}
+</div>
+
+

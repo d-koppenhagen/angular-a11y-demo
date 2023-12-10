@@ -1,4 +1,5 @@
-@for (alert of activeAlerts(); track $index;) {
+@for (alert of activeAlerts(); track alert.title;) {
+  <!-- @for (alert of activeAlerts(); track $index;) { -->
   <app-alert-region
     [role]="alert.role"
     [title]="alert.title"
