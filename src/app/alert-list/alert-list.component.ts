@@ -1,6 +1,6 @@
-import { Component, Signal, computed } from '@angular/core';
+import { Component, computed } from '@angular/core';
 import { AlertRegionComponent } from '../alert-region/alert-region.component';
-import { Alert, AlertService } from '../alert.service';
+import { AlertService } from '../alert.service';
 
 @Component({
   selector: 'app-alert-list',
@@ -11,7 +11,7 @@ import { Alert, AlertService } from '../alert.service';
 })
 export class AlertListComponent {
   private readonly alerts;
-  public activeAlerts: Signal<Alert[]> = computed(() => {
+  activeAlerts = computed(() => {
     return this.alerts().filter((a) => !!a.active);
   });
 

@@ -11,15 +11,15 @@ import { Alert, AlertService } from './../alert.service';
   styleUrl: './alert-table.component.scss'
 })
 export class AlertTableComponent {
-  private readonly alerts;
-  public alertsSorted: Signal<Alert[]> = computed(() => {
+  private readonly alerts: Signal<Alert[]>;
+  alertsSorted = computed(() => {
     return [...this.alerts().sort((a, b) => a.title.localeCompare(b.title))];
   });
-  public activeAlerts: Signal<Alert[]> = computed(() => {
-    return [...this.alertsSorted().filter((a) => !!a.active)];
+  activeAlerts = computed(() => {
+    return this.alertsSorted().filter((a) => !!a.active);
   });
-  public nonActiveAlerts: Signal<Alert[]> = computed(() => {
-    return [...this.alertsSorted().filter((a) => !a.active)];
+  nonActiveAlerts = computed(() => {
+    return this.alertsSorted().filter((a) => !a.active);
   });
 
 

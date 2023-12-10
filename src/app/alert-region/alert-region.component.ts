@@ -59,10 +59,10 @@ export class AlertRegionComponent {
     | 'log'
     | 'progress'
     | 'timer' = 'status';
-  @Output() deactivated = new EventEmitter();
+  @Output() deactivated = new EventEmitter<void>();
   @Input() toastState: string = 'active'; // You can use this to trigger enter/leave animations
 
-  public readonly show$ = new Observable<boolean>(observer => {
+  readonly show$ = new Observable<boolean>(observer => {
     console.log(`[Creation: ${this.title} - sec: ${new Date().getSeconds()}]`)
     const firstTimer = timer(this.timer); // Emit "true" after 3 seconds
     const secondTimer = timer(this.timer + this.duration); // Emit "false" after 20 seconds

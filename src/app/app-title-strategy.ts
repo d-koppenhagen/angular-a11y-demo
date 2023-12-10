@@ -4,7 +4,7 @@ import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 
 @Injectable()
 export class AppTitleStrategy extends TitleStrategy {
-  public appName = 'Angular a11y Demo';
+  appName = 'Angular a11y Demo';
 
   constructor(private title: Title) {
     super();

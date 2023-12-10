@@ -17,7 +17,7 @@ export type Alert = {
   providedIn: 'root',
 })
 export class AlertService {
-  public alerts = signal<Alert[]>([
+  alerts = signal<Alert[]>([
     {
       role: "log",
       title: "Log",

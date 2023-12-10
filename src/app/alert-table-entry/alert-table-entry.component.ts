@@ -18,7 +18,7 @@ import { RemoveAlertDialogComponent } from '../remove-alert-dialog/remove-alert-
 export class AlertTableEntryComponent {
   @Input({ required: true }) alert!: Alert;
 
-  constructor(private alertService: AlertService, public dialog: Dialog) {}
+  constructor(private alertService: AlertService, dialog: Dialog) {}
 
   removeAlert(title: string) {
     const dialogRef = this.dialog.open<string>(RemoveAlertDialogComponent, {

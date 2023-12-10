@@ -1,5 +1,5 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 
 @Component({
   selector: 'app-remove-alert-dialog',
@@ -9,8 +9,8 @@ import { Component, Inject } from '@angular/core';
   styleUrl: './remove-alert-dialog.component.scss'
 })
 export class RemoveAlertDialogComponent {
+  data: { title: string } = inject(DIALOG_DATA)
   constructor(
-    public dialogRef: DialogRef<boolean>,
-    @Inject(DIALOG_DATA) public data: { title: string },
+    dialogRef: DialogRef<boolean>,
   ) {}
 }
