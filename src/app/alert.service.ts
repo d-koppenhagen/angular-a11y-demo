@@ -77,25 +77,26 @@ export class AlertService {
   constructor() {}
 
   addAlert(alert: Alert) {
-    this.alerts.update((value) => [
-      ...value,
+    this.alerts.update((alerts) => [
+      ...alerts,
       { ...alert, active: true }
     ])
   }
 
   private activateOrDeactivateAlert(title: string, active: boolean) {
-    this.alerts.update((value) => [
-      ...value.map(a => {
+    this.alerts.update(alerts =>
+      alerts.map(a => {
         if (a.title === title) {
-          a.active = active
+          return { ...a, active };
+        } else {
+          return a;
         }
-        return a
-      }),
-    ])
+      })
+    )
   }
 
   removeAlert(title: string) {
-    this.alerts.update( (value) => value.filter(a => a.title !== title))
+    this.alerts.update( (alerts) => alerts.filter(alert => alert.title !== title))
   }
 
   activateAlert(title: string) {
