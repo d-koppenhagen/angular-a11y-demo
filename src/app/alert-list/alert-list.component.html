@@ -1,3 +1,4 @@
+<ng-template cdkConnectedOverlay [cdkConnectedOverlayOpen]="true" cdkConnectedOverlayPanelClass="alerts-overlay">
 @for (alert of activeAlerts(); track alert.title;) {
   <!-- @for (alert of activeAlerts(); track $index;) { -->
   <app-alert-region
@@ -10,3 +11,4 @@
     (deactivated)="deactivateAlert(alert.title)"
   ></app-alert-region>
 }
+</ng-template>

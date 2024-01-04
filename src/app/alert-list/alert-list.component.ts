@@ -1,11 +1,12 @@
 import { Component, computed } from '@angular/core';
 import { AlertRegionComponent } from '../alert-region/alert-region.component';
 import { AlertService } from '../alert.service';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-alert-list',
   standalone: true,
-  imports: [AlertRegionComponent],
+  imports: [AlertRegionComponent, OverlayModule],
   templateUrl: './alert-list.component.html',
   styleUrl: './alert-list.component.scss'
 })
