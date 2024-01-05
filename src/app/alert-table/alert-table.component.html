@@ -19,12 +19,12 @@
     </tr>
   </thead>
   <tbody>
-    @for (alert of activeAlerts(); track $index;) {
+    @for (alert of activeAlerts(); track alert.title;) {
     <tr app-alert-table-entry [alert]="alert"></tr>
     }
   </tbody>
   <tbody class="inactive">
-    @for (alert of nonActiveAlerts(); track $index;) {
+    @for (alert of nonActiveAlerts(); track alert.title;) {
     <tr app-alert-table-entry [alert]="alert"></tr>
     }
   </tbody>

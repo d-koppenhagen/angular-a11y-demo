@@ -1,3 +1,4 @@
+import { DeferredLoadingViewComponent } from './deferred-loading-view/deferred-loading-view.component';
 import { Routes } from '@angular/router';
 
 import { HomeViewComponent } from './home-view/home-view.component';
@@ -6,6 +7,11 @@ export const routes: Routes = [
   {
     path: '',
     component: HomeViewComponent,
+  },
+  {
+    path: 'deferred-loading',
+    loadComponent: () => import('./deferred-loading-view/deferred-loading-view.component').then(m => m.DeferredLoadingViewComponent),
+    title: 'Deferred Loading'
   },
   {
     path: 'alerts',

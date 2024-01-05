@@ -1,0 +1,29 @@
+<h1>Deferred Loading</h1>
+
+<p>When using deferred loading, you should keep in mind, that screenreaders probably don't notice changes once the deferred block is loaded when already in focus.</p>
+
+<h2>on timer</h2>
+
+<p aria-atomic="true" aria-live="polite">
+@defer (on timer(5000)) {
+  <ngx-lipsum [config]="config"></ngx-lipsum>
+} @placeholder() {
+  Placeholder...
+} @loading(minimum 3000) {
+  Loading...
+} @error {
+  Error...
+}
+</p>
+
+<h2>on viewport</h2>
+
+<p style="padding-bottom: 80vh; margin-bottom: 1rem; border-bottom: 1px solid black;">Please scroll down below the bottom border to see deferred loading on viewport in action.</p>
+
+<div aria-atomic="true" aria-live="polite">
+@defer (on viewport) {
+  <img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w1nzeme4ix1lgw38epwb.jpeg" alt="a woman with her hands on her knees, appearing to be squinting at an object in the distance captioned When someone says they don't need web accessibility" loading="lazy" width="460" height="603">
+} @placeholder(minimum 3000) {
+  <div class="placeholder" tabindex="0"></div>
+}
+</div>
