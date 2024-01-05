@@ -69,7 +69,7 @@ export class AlertRegionComponent {
 
   private announce() {
     const description = this.description ? `: ${this.description}` : '';
-    this.liveAnnouncer.announce(`${this.title}${description}`);
+    this.liveAnnouncer.announce(`${this.title}${description}`, this.politeness);
   }
 
   private closeMessage() {
