@@ -2,8 +2,6 @@ import { Component, Input } from '@angular/core';
 import { Alert, AlertService } from '../alert.service';
 import {
   Dialog,
-  DialogRef,
-  DIALOG_DATA,
   DialogModule,
 } from '@angular/cdk/dialog';
 import { RemoveAlertDialogComponent } from '../remove-alert-dialog/remove-alert-dialog.component';

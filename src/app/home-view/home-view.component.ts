@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { type ILoremIpsumParams } from 'lorem-ipsum';
 
 @Component({
   selector: 'app-home-view',

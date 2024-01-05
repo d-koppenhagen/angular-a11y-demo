@@ -1,5 +1,5 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
-import { Component, Inject, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 @Component({
   selector: 'app-remove-alert-dialog',

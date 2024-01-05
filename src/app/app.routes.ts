@@ -1,4 +1,3 @@
-import { DeferredLoadingViewComponent } from './deferred-loading-view/deferred-loading-view.component';
 import { Routes } from '@angular/router';
 
 import { HomeViewComponent } from './home-view/home-view.component';
