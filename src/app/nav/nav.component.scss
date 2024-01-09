@@ -21,6 +21,9 @@ nav .button:nth-child(3) {
 nav .button:nth-child(4) {
   --pill-accent: var(--electric-violet);
 }
+nav .button:nth-child(5) {
+  --pill-accent: var(--orange-red);
+}
 
 nav svg {
   margin-inline-start: 0.25rem;

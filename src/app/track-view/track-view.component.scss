@@ -1,0 +1,25 @@
+form {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+fieldset {
+  display: flex;
+  justify-content: space-between;
+  gap: .5rem;
+  flex-direction: column;
+
+  legend {
+    font-weight: bold;
+  }
+}
+
+p {
+  margin-bottom: .5rem;
+}
+
+code {
+  color: var(--bright-blue);
+}

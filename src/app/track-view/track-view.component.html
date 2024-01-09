@@ -1,0 +1,58 @@
+<h1>Track Demo</h1>
+
+<p>
+  The example below shows the difference of tracking list options with
+  <code>$index</code> and an actual unique attribute. By tracking a unique
+  attribute, the object wont be completely new initialized. In fact, when the
+  array changes, the focus of elements will be restored/tracked correctly.
+</p>
+<p>
+  Please enter a text in one of the input fields on the left side. After a few
+  seconds, items will be added to the array of the list. Keep an eye on where
+  you entered your text. While entering and concurrently adding new fields, your
+  input moves into another field as only the <code>$index</code> is tracked. The
+  list on the right tracks a unique attribute (<code>item.id</code>). This
+  ensures, the focus does not accidentally move to another input event when the
+  list updates concurrently.
+</p>
+<p>
+  Every 5 seconds a new entry is inserted.
+</p>
+
+<form>
+  <fieldset>
+    <legend>Track: <code>$index</code></legend>
+    @for(item of items; track $index) {
+    <div class="row">
+      <label class="col-sm-6 col-form-label" [for]="'col-0-' + $index">
+        {{ item.id }} | {{ item.name }}
+      </label>
+      <input [id]="'col-0-' + $index" class="form-control" />
+    </div>
+    }
+  </fieldset>
+
+  <fieldset>
+    <legend>Track: <code>item.id</code></legend>
+    @for(item of items; track item.id) {
+    <div class="row">
+      <label class="col-sm-6 col-form-label" [for]="'col-1-' + $index">
+        {{ item.id }} | {{ item.name }}
+      </label>
+      <input [id]="'col-1-' + $index" class="form-control" />
+    </div>
+    }
+  </fieldset>
+
+  <fieldset>
+    <legend>Track: <code>item</code></legend>
+    @for(item of items; track item) {
+    <div class="row">
+      <label class="col-sm-6 col-form-label" [for]="'col-2-' + $index">
+        {{ item.id }} | {{ item.name }}
+      </label>
+      <input [id]="'col-2-' + $index" class="form-control" />
+    </div>
+    }
+  </fieldset>
+</form>

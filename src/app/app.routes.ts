@@ -13,6 +13,11 @@ export const routes: Routes = [
     title: 'Deferred Loading'
   },
   {
+    path: 'track',
+    loadComponent: () => import('./track-view/track-view.component').then(m => m.TrackViewComponent),
+    title: 'Track List Items'
+  },
+  {
     path: 'alerts',
     loadComponent: () => import('./alerts-view/alerts-view.component').then(m => m.AlertsViewComponent),
     title: 'List of configured alerts'
