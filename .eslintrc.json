@@ -26,7 +26,10 @@
         "@angular-eslint/component-selector": [
           "error",
           {
-            "type": ["attribute", "element"],
+            "type": [
+              "attribute",
+              "element"
+            ],
             "prefix": "app",
             "style": "kebab-case"
           }
@@ -43,5 +46,8 @@
       ],
       "rules": {}
     }
+  ],
+  "extends": [
+    "plugin:storybook/recommended"
   ]
 }

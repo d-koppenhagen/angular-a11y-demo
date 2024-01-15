@@ -1,0 +1,2414 @@
+{
+    "pipes": [],
+    "interfaces": [
+        {
+            "name": "Item",
+            "id": "interface-Item-8ec43ade2430f4eb99ca3b77cad7d38051d4dd24b70e23e555dcfeb9f0c40db5de4fb62247f19834d451eba30da98e13760c7be34cbe033426d7db20e9032333",
+            "file": "src/app/track-view/track-view.component.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "interface",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\n\ninterface Item {\n  id: number;\n  name: string;\n}\n\nconst fullNameItems: Item[] = [\n  { id: 3, name: 'Item #3' },\n  { id: 2, name: 'Item #2' },\n  { id: 1, name: 'Item #1' },\n];\n\n@Component({\n  selector: 'app-track-view',\n  standalone: true,\n  imports: [FormsModule],\n  templateUrl: './track-view.component.html',\n  styleUrl: './track-view.component.scss'\n})\nexport class TrackViewComponent {\n  values = ['', '', '']; // Werte der Eingabefelder (initial)\n  items: Item[]; // Array mit Werten für *ngFor\n  toggle: boolean;\n\n  constructor() {\n    this.items = fullNameItems;\n    this.toggle = false;\n    setInterval(() => {\n      if (this.items.length >= 50) {\n        this.items = [];\n      }\n      this.addItem();\n    }, 5000);\n  }\n\n  addItem() {\n    const num = this.items.length + 1;\n    this.toggle = !this.toggle;\n    this.items = [\n      { id: num, name: `Item #${num}` },\n\n      // with the following line will make the third column work as referecnes of the objects are kept\n      // ...this.items,\n\n      // with the follwoing line will make the third column not working as the references are not the same anymore (item === item  => false)\n      ...structuredClone(this.items),\n    ];\n  }\n}\n",
+            "properties": [
+                {
+                    "name": "id",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 5
+                },
+                {
+                    "name": "name",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 6
+                }
+            ],
+            "indexSignatures": [],
+            "kind": 171,
+            "methods": [],
+            "extends": []
+        }
+    ],
+    "injectables": [
+        {
+            "name": "AlertService",
+            "id": "injectable-AlertService-6c1071d86ce1a86b88d56bbe075d24c806db0ef51dbf00c3f8c6089a94649a15d8fbf1fe7ab04d4352d3293b88e23df5343f55bb95e97955211d50fec4be1103",
+            "file": "src/app/alert.service.ts",
+            "properties": [
+                {
+                    "name": "alerts",
+                    "defaultValue": "signal<Alert[]>([\n    {\n      role: \"log\",\n      title: \"Log\",\n      description: \"A simple log\",\n      politeness: \"polite\",\n      timer: 2000,\n      duration: 3000,\n      active: true\n    },\n    {\n      role: \"alert\",\n      title: \"Alert\",\n      description: \"A very important alert message\",\n      politeness: \"assertive\",\n      timer: 200,\n      duration: 2000,\n      active: true\n    },\n    {\n      role: \"status\",\n      title: \"Status\",\n      description: \"A status alert which isn't that important\",\n      politeness: \"polite\",\n      timer: 3000,\n      duration: 2000,\n      active: true\n    },\n    {\n      role: \"marquee\",\n      title: \"Marquee\",\n      description: \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.\",\n      politeness: \"polite\",\n      timer: 500,\n      duration: 10000,\n      active: true\n    },\n    {\n      role: \"progress\",\n      title: \"Progress\",\n      description: \"Step 1 of 4 finished.\",\n      politeness: \"polite\",\n      timer: 6000,\n      duration: 3000,\n      active: true\n    },\n    {\n      role: \"timer\",\n      title: \"Timer\",\n      description: \"2 minutes left\",\n      politeness: \"polite\",\n      timer: 7000,\n      duration: 3000,\n      active: true\n    },\n  ])",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 20
+                }
+            ],
+            "methods": [
+                {
+                    "name": "activateAlert",
+                    "args": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 102,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "activateOrDeactivateAlert",
+                    "args": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "active",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 86,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "active",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "addAlert",
+                    "args": [
+                        {
+                            "name": "alert",
+                            "type": "Alert",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 79,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "alert",
+                            "type": "Alert",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "deactivateAlert",
+                    "args": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 106,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "removeAlert",
+                    "args": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 98,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { AriaLivePoliteness } from '@angular/cdk/a11y';\nimport { Injectable, signal } from '@angular/core';\n\nexport type Role = 'status' | 'alert' | 'marquee' | 'log' | 'progress' | 'timer'\n\nexport type Alert = {\n  title: string;\n  description?: string;\n  politeness: AriaLivePoliteness;\n  role: Role;\n  timer: number,\n  duration: number\n  active?: boolean\n};\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class AlertService {\n  alerts = signal<Alert[]>([\n    {\n      role: \"log\",\n      title: \"Log\",\n      description: \"A simple log\",\n      politeness: \"polite\",\n      timer: 2000,\n      duration: 3000,\n      active: true\n    },\n    {\n      role: \"alert\",\n      title: \"Alert\",\n      description: \"A very important alert message\",\n      politeness: \"assertive\",\n      timer: 200,\n      duration: 2000,\n      active: true\n    },\n    {\n      role: \"status\",\n      title: \"Status\",\n      description: \"A status alert which isn't that important\",\n      politeness: \"polite\",\n      timer: 3000,\n      duration: 2000,\n      active: true\n    },\n    {\n      role: \"marquee\",\n      title: \"Marquee\",\n      description: \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.\",\n      politeness: \"polite\",\n      timer: 500,\n      duration: 10000,\n      active: true\n    },\n    {\n      role: \"progress\",\n      title: \"Progress\",\n      description: \"Step 1 of 4 finished.\",\n      politeness: \"polite\",\n      timer: 6000,\n      duration: 3000,\n      active: true\n    },\n    {\n      role: \"timer\",\n      title: \"Timer\",\n      description: \"2 minutes left\",\n      politeness: \"polite\",\n      timer: 7000,\n      duration: 3000,\n      active: true\n    },\n  ])\n\n  constructor() {}\n\n  addAlert(alert: Alert) {\n    this.alerts.update((alerts) => [\n      ...alerts,\n      { ...alert, active: true }\n    ])\n  }\n\n  private activateOrDeactivateAlert(title: string, active: boolean) {\n    this.alerts.update(alerts =>\n      alerts.map(a => {\n        if (a.title === title) {\n          return { ...a, active };\n        } else {\n          return a;\n        }\n      })\n    )\n  }\n\n  removeAlert(title: string) {\n    this.alerts.update( (alerts) => alerts.filter(alert => alert.title !== title))\n  }\n\n  activateAlert(title: string) {\n    this.activateOrDeactivateAlert(title, true)\n  }\n\n  deactivateAlert(title: string) {\n    console.log('❌ deactivate', title)\n    this.activateOrDeactivateAlert(title, false)\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 75
+            },
+            "extends": [],
+            "type": "injectable"
+        },
+        {
+            "name": "AppTitleStrategy",
+            "id": "injectable-AppTitleStrategy-0e2a3679aab44ad00faec40acf489928f58c6b3858d81b600ac574573a8b5df891ad70bf5bb6bfd906938f9462fc2ff7e6c41ee2f1c81dc45d6095f1b546af05",
+            "file": "src/app/app-title-strategy.ts",
+            "properties": [
+                {
+                    "name": "appName",
+                    "defaultValue": "'Angular a11y Demo'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 7
+                }
+            ],
+            "methods": [
+                {
+                    "name": "updateTitle",
+                    "args": [
+                        {
+                            "name": "routerState",
+                            "type": "RouterStateSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "routerState",
+                            "type": "RouterStateSnapshot",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\nimport { Title } from '@angular/platform-browser';\nimport { RouterStateSnapshot, TitleStrategy } from '@angular/router';\n\n@Injectable()\nexport class AppTitleStrategy extends TitleStrategy {\n  appName = 'Angular a11y Demo';\n\n  constructor(private title: Title) {\n    super();\n  }\n\n  updateTitle(routerState: RouterStateSnapshot) {\n    const title = this.buildTitle(routerState);\n    if (title) {\n      this.title.setTitle(`${title} | ${this.appName}`);\n    } else {\n      this.title.setTitle(this.appName);\n    }\n  }\n}\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "title",
+                        "type": "Title",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 7,
+                "jsdoctags": [
+                    {
+                        "name": "title",
+                        "type": "Title",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [
+                "TitleStrategy"
+            ],
+            "type": "injectable"
+        }
+    ],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [
+        {
+            "name": "AlertDetailsComponent",
+            "id": "component-AlertDetailsComponent-c7daa2b3b5f5948029af200eedcda53f60e662f6071a76b02f3d9487b2bad13b1699cb8b223f9157440bf500c7b723a7f4caca8db9e2cea644593c2a6c78f609",
+            "file": "src/app/alert-details/alert-details.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-alert-details",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./alert-details.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-alert-details',\n  standalone: true,\n  imports: [],\n  templateUrl: './alert-details.component.html',\n  styleUrl: './alert-details.component.scss'\n})\nexport class AlertDetailsComponent {\n\n}\n",
+            "styleUrl": "./alert-details.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<p>alert-details works!</p>\n"
+        },
+        {
+            "name": "AlertFormComponent",
+            "id": "component-AlertFormComponent-7adc2216404b6de89611d2d3e10716fddbcbbfe0b924f71ee75c100ace9d32593df92dc8f1b44466b199903649bfe2152c24e24a4647605b39df552f006d785d",
+            "file": "src/app/alert-form/alert-form.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-alert-form",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./alert-form.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "form",
+                    "defaultValue": "new FormGroup({\n    title: new FormControl('', {\n      nonNullable: true,\n      validators: [\n        Validators.required,\n        Validators.maxLength(20)\n      ],\n    }),\n    description: new FormControl('', {\n      nonNullable: true,\n    }),\n    politeness: new FormControl<AriaLivePoliteness>('polite', {\n      nonNullable: true,\n      validators: Validators.required,\n    }),\n    role: new FormControl<Role>('status', {\n      nonNullable: true,\n      validators: Validators.required,\n    }),\n    timer: new FormControl(5000, {\n      nonNullable: true,\n      validators: Validators.required,\n    }),\n    duration: new FormControl(3000, {\n      nonNullable: true,\n      validators: Validators.required,\n    }),\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 16
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "isInvalid",
+                    "args": [
+                        {
+                            "name": "controlName",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 47,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "controlName",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "submitForm",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 52,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "A11yModule",
+                    "type": "module"
+                },
+                {
+                    "name": "ReactiveFormsModule",
+                    "type": "module"
+                },
+                {
+                    "name": "CdkListbox"
+                },
+                {
+                    "name": "CdkOption"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { A11yModule, AriaLivePoliteness } from '@angular/cdk/a11y';\nimport { CdkListbox, CdkOption } from '@angular/cdk/listbox';\nimport { Component } from '@angular/core';\nimport { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';\n\nimport { Alert, AlertService, Role } from '../alert.service';\n\n@Component({\n  selector: 'app-alert-form',\n  standalone: true,\n  imports: [A11yModule, ReactiveFormsModule, CdkListbox, CdkOption],\n  templateUrl: './alert-form.component.html',\n  styleUrl: './alert-form.component.scss'\n})\nexport class AlertFormComponent {\n  form = new FormGroup({\n    title: new FormControl('', {\n      nonNullable: true,\n      validators: [\n        Validators.required,\n        Validators.maxLength(20)\n      ],\n    }),\n    description: new FormControl('', {\n      nonNullable: true,\n    }),\n    politeness: new FormControl<AriaLivePoliteness>('polite', {\n      nonNullable: true,\n      validators: Validators.required,\n    }),\n    role: new FormControl<Role>('status', {\n      nonNullable: true,\n      validators: Validators.required,\n    }),\n    timer: new FormControl(5000, {\n      nonNullable: true,\n      validators: Validators.required,\n    }),\n    duration: new FormControl(3000, {\n      nonNullable: true,\n      validators: Validators.required,\n    }),\n  });\n\n  constructor(private alertService: AlertService) {}\n\n  isInvalid(controlName: keyof typeof this.form.controls) {\n    const control = this.form.controls[controlName];\n    return control.invalid && (control.dirty || control.touched);\n  }\n\n  submitForm() {\n    const alert = this.form.value;\n    this.alertService.addAlert(alert as Alert)\n    this.form.reset()\n  }\n}\n",
+            "styleUrl": "./alert-form.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 43,
+                "jsdoctags": [
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "<form [formGroup]=\"form\" (ngSubmit)=\"submitForm()\">\n  <div class=\"form-field\">\n    <label class=\"elm-label\" for=\"title\">Title</label>\n    <input\n      type=\"text\"\n      placeholder=\"My notification title\"\n      formControlName=\"title\"\n      id=\"title\"\n      aria-describedby=\"titlehint\"\n      [attr.aria-invalid]=\"isInvalid('title')\"\n    />\n    @if(isInvalid('title')) {\n    <p id=\"titlehint\" class=\"description\">\n      You must enter a short title (max. 20 characters).\n    </p>\n    }\n  </div>\n\n  <div class=\"form-field\">\n    <label class=\"elm-label\" for=\"description\">Description</label>\n    <textarea\n      type=\"text\"\n      placeholder=\"My notification description\"\n      formControlName=\"description\"\n      id=\"description\"\n      aria-invalid=\"false\"\n    ></textarea>\n  </div>\n\n  <div class=\"form-field-group\">\n    <div class=\"form-field\">\n      <!-- eslint-disable-next-line @angular-eslint/template/label-has-associated-control -->\n      <label id=\"politeness\">Politeness</label>\n      <ul\n        class=\"list-box\"\n        cdkListbox\n        cdkListboxOrientation=\"horizontal\"\n        aria-labelledby=\"politeness\"\n        formControlName=\"politeness\"\n      >\n        <li cdkOption=\"off\">Off</li>\n        <li cdkOption=\"polite\">Polite</li>\n        <li cdkOption=\"assertive\">Assertive</li>\n      </ul>\n    </div>\n\n    <div class=\"form-field\">\n      <label for=\"role\">Role</label>\n      <select formControlName=\"role\" id=\"role\" aria-invalid=\"false\">\n        <option value=\"status\" selected>status</option>\n        <option value=\"alert\">alert</option>\n        <option value=\"marquee\">marquee</option>\n        <option value=\"log\">log</option>\n        <option value=\"progress\">progress</option>\n        <option value=\"timer\">timer</option>\n      </select>\n    </div>\n  </div>\n\n  <div class=\"form-field-group\">\n    <div class=\"form-field\">\n      <label class=\"elm-label\" for=\"timer\">Timer</label>\n      <input\n        type=\"number\"\n        formControlName=\"timer\"\n        id=\"timer\"\n        aria-describedby=\"timerhint\"\n        [attr.aria-invalid]=\"isInvalid('timer')\"\n      />\n      @if(isInvalid('timer')) {\n      <p id=\"timerhint\" class=\"description\">A timer must be set.</p>\n      }\n    </div>\n\n    <div class=\"form-field\">\n      <label class=\"elm-label\" for=\"duration\">Duration</label>\n      <input\n        type=\"number\"\n        formControlName=\"duration\"\n        id=\"duration\"\n        aria-describedby=\"durationhint\"\n        [attr.aria-invalid]=\"isInvalid('duration')\"\n      />\n      @if(isInvalid('duration')) {\n      <p id=\"durationhint\" class=\"description\">A duration must be set.</p>\n      }\n    </div>\n  </div>\n\n  <button type=\"submit\" [disabled]=\"form.invalid\">Save</button>\n</form>\n"
+        },
+        {
+            "name": "AlertListComponent",
+            "id": "component-AlertListComponent-311032529c1cb81902d3dbf1343c965774d6d029bba2ef534b7ec469fcb1bbff3a91411922fa77dfad59859e8d7bec0531aefb521a1c729bfd78be9fe9835aa2",
+            "file": "src/app/alert-list/alert-list.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-alert-list",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./alert-list.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "activeAlerts",
+                    "defaultValue": "computed(() => {\n    return this.alerts().filter((a) => !!a.active);\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "alerts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "deactivateAlert",
+                    "args": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "AlertRegionComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "OverlayModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, computed } from '@angular/core';\nimport { AlertRegionComponent } from '../alert-region/alert-region.component';\nimport { AlertService } from '../alert.service';\nimport { OverlayModule } from '@angular/cdk/overlay';\n\n@Component({\n  selector: 'app-alert-list',\n  standalone: true,\n  imports: [AlertRegionComponent, OverlayModule],\n  templateUrl: './alert-list.component.html',\n  styleUrl: './alert-list.component.scss'\n})\nexport class AlertListComponent {\n  private readonly alerts;\n  activeAlerts = computed(() => {\n    return this.alerts().filter((a) => !!a.active);\n  });\n\n  constructor(private alertService: AlertService) {\n    this.alerts = alertService.alerts;\n  }\n\n  deactivateAlert(title: string) {\n    this.alertService.deactivateAlert(title)\n  }\n}\n",
+            "styleUrl": "./alert-list.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 17,
+                "jsdoctags": [
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "<ng-template cdkConnectedOverlay [cdkConnectedOverlayOpen]=\"true\" cdkConnectedOverlayPanelClass=\"alerts-overlay\">\n@for (alert of activeAlerts(); track alert.title;) {\n  <!-- @for (alert of activeAlerts(); track $index;) { -->\n  <app-alert-region\n    [role]=\"alert.role\"\n    [title]=\"alert.title\"\n    [description]=\"alert.description\"\n    [politeness]=\"alert.politeness\"\n    [timer]=\"alert.timer\"\n    [duration]=\"alert.duration\"\n    (deactivated)=\"deactivateAlert(alert.title)\"\n  ></app-alert-region>\n}\n</ng-template>\n"
+        },
+        {
+            "name": "AlertRegionComponent",
+            "id": "component-AlertRegionComponent-d46252423d66c4a0b10f1ae2a4fea77411de2935599ee6ba9e35ffa7b6ff2e37b6d876434be0afa1bb877567949d535ae09229db21c53004ab8ac9cd802ddb20",
+            "file": "src/app/alert-region/alert-region.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-alert-region",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./alert-region.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "description",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 38,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "duration",
+                    "defaultValue": "3000",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 40,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "politeness",
+                    "defaultValue": "'polite'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 41,
+                    "type": "AriaLivePoliteness",
+                    "decorators": []
+                },
+                {
+                    "name": "role",
+                    "defaultValue": "'status'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 42,
+                    "type": "\"status\" | \"alert\" | \"marquee\" | \"log\" | \"progress\" | \"timer\"",
+                    "decorators": []
+                },
+                {
+                    "name": "timer",
+                    "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 39,
+                    "type": "number",
+                    "decorators": []
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 37,
+                    "type": "string",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "deactivated",
+                    "defaultValue": "new EventEmitter<void>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 49,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "show$",
+                    "defaultValue": "defer(() => {\n    // Emit \"true\" after e.g. 3 seconds and announce\n    const firstTimer = timer(this.timer).pipe(\n      map(() => true),\n      tap(() => this.announce())\n    );\n\n    // Emit \"false\" after e.g. 20 seconds\n    const secondTimer = timer(this.duration).pipe(\n      map(() => false),\n      tap(() => this.closeMessage())\n    );\n\n    return concat(firstTimer, secondTimer);\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 51,
+                    "modifierKind": [
+                        148
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "announce",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 69,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
+                    "name": "closeMessage",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 74,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "A11yModule",
+                    "type": "module"
+                },
+                {
+                    "name": "AsyncPipe",
+                    "type": "pipe"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\nimport {\n  animate,\n  state,\n  style,\n  transition,\n  trigger,\n} from '@angular/animations';\nimport {\n  A11yModule,\n  AriaLivePoliteness,\n  LiveAnnouncer,\n} from '@angular/cdk/a11y';\nimport { concat, defer, map, tap, timer } from 'rxjs';\nimport { AsyncPipe } from '@angular/common';\n\n@Component({\n  selector: 'app-alert-region',\n  standalone: true,\n  imports: [A11yModule, AsyncPipe],\n  templateUrl: './alert-region.component.html',\n  styleUrl: './alert-region.component.scss',\n  animations: [\n    trigger('flyInOut', [\n      state('in', style({ transform: 'translateY(0)', opacity: 1 })),\n      transition(':enter', [\n        style({ transform: 'translateY(-20px)', opacity: 0 }),\n        animate(300),\n      ]),\n      transition(':leave', [\n        animate(300, style({ transform: 'translateY(20px)', opacity: 1 })),\n      ]),\n    ]),\n  ],\n})\nexport class AlertRegionComponent {\n  @Input() title: string = '';\n  @Input() description?: string;\n  @Input() timer: number = 0; // Timer duration in milliseconds\n  @Input() duration: number = 3000; // Timer duration in milliseconds\n  @Input() politeness: AriaLivePoliteness = 'polite';\n  @Input() role?:\n    | 'status'\n    | 'alert'\n    | 'marquee'\n    | 'log'\n    | 'progress'\n    | 'timer' = 'status';\n  @Output() deactivated = new EventEmitter<void>();\n\n  readonly show$ = defer(() => {\n    // Emit \"true\" after e.g. 3 seconds and announce\n    const firstTimer = timer(this.timer).pipe(\n      map(() => true),\n      tap(() => this.announce())\n    );\n\n    // Emit \"false\" after e.g. 20 seconds\n    const secondTimer = timer(this.duration).pipe(\n      map(() => false),\n      tap(() => this.closeMessage())\n    );\n\n    return concat(firstTimer, secondTimer);\n  });\n\n  constructor(private liveAnnouncer: LiveAnnouncer) {}\n\n  private announce() {\n    const description = this.description ? `: ${this.description}` : '';\n    this.liveAnnouncer.announce(`${this.title} ${description}`, this.politeness);\n  }\n\n  private closeMessage() {\n    this.deactivated.emit();\n    this.liveAnnouncer.clear();\n  }\n}\n",
+            "styleUrl": "./alert-region.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "liveAnnouncer",
+                        "type": "LiveAnnouncer",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 65,
+                "jsdoctags": [
+                    {
+                        "name": "liveAnnouncer",
+                        "type": "LiveAnnouncer",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "@if(show$ | async; as show) {\n<div [@flyInOut] [attr.role]=\"role\" [attr.aria-live]=\"politeness\" aria-hidden=\"true\">\n  <p class=\"title\"><b>{{ title }}</b></p>\n  @if (description) {\n  <p class=\"description\">{{ description }}</p>\n  }\n</div>\n}\n\n"
+        },
+        {
+            "name": "AlertsAdminViewComponent",
+            "id": "component-AlertsAdminViewComponent-b896970ba91be23aae1cd3fa4841fc1f96ef410107dae4fd5c0747d183525ec716bc79b6b43e6bff8865aac18b21f71bdecebff89a7aff54e5eefcc350fb9392",
+            "file": "src/app/alerts-admin-view/alerts-admin-view.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-alerts-admin-view",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./alerts-admin-view.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "AlertFormComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { AlertFormComponent } from '../alert-form/alert-form.component';\n\n@Component({\n  selector: 'app-alerts-admin-view',\n  standalone: true,\n  imports: [AlertFormComponent],\n  templateUrl: './alerts-admin-view.component.html',\n  styleUrl: './alerts-admin-view.component.scss'\n})\nexport class AlertsAdminViewComponent {\n\n}\n",
+            "styleUrl": "./alerts-admin-view.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<h1>Administration</h1>\n<app-alert-form></app-alert-form>\n"
+        },
+        {
+            "name": "AlertsViewComponent",
+            "id": "component-AlertsViewComponent-32d9e008c9d96c54408df62a0a80c25b859a2ffe12149325e3584e2cc961aa0a26a2e78b7b1db10c78e1b3f21068c7bfe1de11bdaefcb61cdf0ca2cd393ad0ef",
+            "file": "src/app/alerts-view/alerts-view.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-alerts-view",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./alerts-view.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "AlertTableComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "AlertListComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { AlertTableComponent } from '../alert-table/alert-table.component';\nimport { AlertListComponent } from '../alert-list/alert-list.component';\n\n@Component({\n  selector: 'app-alerts-view',\n  standalone: true,\n  imports: [AlertTableComponent, AlertListComponent],\n  templateUrl: './alerts-view.component.html',\n  styleUrl: './alerts-view.component.scss'\n})\nexport class AlertsViewComponent {\n\n}\n",
+            "styleUrl": "./alerts-view.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<h1>Alerts</h1>\n<app-alert-table>\n<app-alert-list></app-alert-list>\n"
+        },
+        {
+            "name": "AlertTableComponent",
+            "id": "component-AlertTableComponent-664d9870340ad2cc5787dc9f90fccb8107a5a6e07c975caecc343303a1df3fa8bc6436d7bf80af059c639d051c446b4bcba132f2d50cf54ab43fd41eec6f60bd",
+            "file": "src/app/alert-table/alert-table.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-alert-table",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./alert-table.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "activeAlerts",
+                    "defaultValue": "computed(() => {\n    return this.alertsSorted().filter((a) => !!a.active);\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 18
+                },
+                {
+                    "name": "alerts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Signal<Alert[]>",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        123,
+                        148
+                    ]
+                },
+                {
+                    "name": "alertsSorted",
+                    "defaultValue": "computed(() => {\n    return [...this.alerts().sort((a, b) => a.title.localeCompare(b.title))];\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 15
+                },
+                {
+                    "name": "nonActiveAlerts",
+                    "defaultValue": "computed(() => {\n    return this.alertsSorted().filter((a) => !a.active);\n  })",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 21
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "startAlert",
+                    "args": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 30,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "AlertTableEntryComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, computed, Signal } from '@angular/core';\n\nimport { AlertTableEntryComponent } from '../alert-table-entry/alert-table-entry.component';\nimport { Alert, AlertService } from './../alert.service';\n\n@Component({\n  selector: 'app-alert-table',\n  standalone: true,\n  imports: [AlertTableEntryComponent],\n  templateUrl: './alert-table.component.html',\n  styleUrl: './alert-table.component.scss'\n})\nexport class AlertTableComponent {\n  private readonly alerts: Signal<Alert[]>;\n  alertsSorted = computed(() => {\n    return [...this.alerts().sort((a, b) => a.title.localeCompare(b.title))];\n  });\n  activeAlerts = computed(() => {\n    return this.alertsSorted().filter((a) => !!a.active);\n  });\n  nonActiveAlerts = computed(() => {\n    return this.alertsSorted().filter((a) => !a.active);\n  });\n\n\n  constructor(private alertService: AlertService) {\n    this.alerts = alertService.alerts;\n  }\n\n  startAlert(title: string) {\n    this.alertService.activateAlert(title)\n  }\n}\n",
+            "styleUrl": "./alert-table.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 23,
+                "jsdoctags": [
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "@if (alertsSorted().length) {\n<table>\n  <caption>\n    The table shows all configured alerts.\n    <span class=\"cdk-visually-hidden\"\n      >Active alerts are listed first. Inactive alerts that were already\n      presented are listed at the end.</span\n    >\n  </caption>\n  <thead>\n    <tr>\n      <th scope=\"col\" aria-sort=\"ascending\">Title</th>\n      <th scope=\"col\">Description</th>\n      <th scope=\"col\">Role</th>\n      <th scope=\"col\">Politeness</th>\n      <th scope=\"col\">Timer</th>\n      <th scope=\"col\">Duration</th>\n      <th scope=\"col\" colspan=\"2\">Actions</th>\n    </tr>\n  </thead>\n  <tbody>\n    @for (alert of activeAlerts(); track alert.title;) {\n    <tr app-alert-table-entry [alert]=\"alert\"></tr>\n    }\n  </tbody>\n  <tbody class=\"inactive\">\n    @for (alert of nonActiveAlerts(); track alert.title;) {\n    <tr app-alert-table-entry [alert]=\"alert\"></tr>\n    }\n  </tbody>\n</table>\n} @else {\n<p>No alerts configured.</p>\n}\n"
+        },
+        {
+            "name": "AlertTableEntryComponent",
+            "id": "component-AlertTableEntryComponent-4717038ac593660304605b1a5353784c8adade2abf853900abe40273c4d59b9c5e1bde078388a74117edd9393dd04fb92bf37637d4fdb736d40b28f709885c56",
+            "file": "src/app/alert-table-entry/alert-table-entry.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "[app-alert-table-entry]",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./alert-table-entry.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "required": true,
+                    "name": "alert",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "optional": false,
+                    "line": 17,
+                    "type": "Alert",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "removeAlert",
+                    "args": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 21,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "startAlert",
+                    "args": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 35,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "title",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "DialogModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input } from '@angular/core';\nimport { Alert, AlertService } from '../alert.service';\nimport {\n  Dialog,\n  DialogModule,\n} from '@angular/cdk/dialog';\nimport { RemoveAlertDialogComponent } from '../remove-alert-dialog/remove-alert-dialog.component';\n\n@Component({\n  selector: '[app-alert-table-entry]',\n  standalone: true,\n  imports: [DialogModule],\n  templateUrl: './alert-table-entry.component.html',\n  styleUrl: './alert-table-entry.component.scss',\n})\nexport class AlertTableEntryComponent {\n  @Input({ required: true }) alert?: Alert;\n\n  constructor(private alertService: AlertService, private dialog: Dialog) {}\n\n  removeAlert(title: string) {\n    const dialogRef = this.dialog.open<string>(RemoveAlertDialogComponent, {\n      width: '250px',\n      data: { title },\n      ariaLabel: \"Remove alert\"\n    });\n\n    dialogRef.closed.subscribe((doClose) => {\n      if (doClose) {\n        this.alertService.removeAlert(title);\n      }\n    });\n  }\n\n  startAlert(title: string) {\n    this.alertService.activateAlert(title);\n  }\n}\n",
+            "styleUrl": "./alert-table-entry.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "dialog",
+                        "type": "Dialog",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 17,
+                "jsdoctags": [
+                    {
+                        "name": "alertService",
+                        "type": "AlertService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "dialog",
+                        "type": "Dialog",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "@if(alert) {\n  <th scope=\"row\">{{ alert.title }}</th>\n  <td>{{ alert.description }}</td>\n  <td>{{ alert.role }}</td>\n  <td>{{ alert.politeness }}</td>\n  <td>{{ alert.timer }}</td>\n  <td>{{ alert.duration }}</td>\n  <td>\n    <button\n      (click)=\"removeAlert(alert.title)\"\n      title=\"Remove Alert\"\n      aria-label=\"Remove Alert\"\n    >\n      🗑️\n    </button>\n  </td>\n  <td>\n    <button (click)=\"startAlert(alert.title)\" [disabled]=\"!!alert.active\">\n      {{ alert.active ? \"Active\" : \"Activate\" }}\n    </button>\n  </td>\n}\n"
+        },
+        {
+            "name": "AppComponent",
+            "id": "component-AppComponent-8fa4370d1697f7e2c7ddcafb1190a4102cebd7ad659e691509882241ed3fd36e0162259403beff19f5d3feb8e4f4796101f226ffd21641bd08576e68288d1dd0",
+            "file": "src/app/app.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-root",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./app.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                },
+                {
+                    "name": "RouterOutlet"
+                },
+                {
+                    "name": "NavComponent",
+                    "type": "component"
+                },
+                {
+                    "name": "AlertListComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component } from '@angular/core';\nimport { RouterOutlet } from '@angular/router';\nimport { NavComponent } from './nav/nav.component';\nimport { AlertListComponent } from './alert-list/alert-list.component';\n\n@Component({\n  selector: 'app-root',\n  standalone: true,\n  imports: [CommonModule, RouterOutlet, NavComponent, AlertListComponent],\n  templateUrl: './app.component.html',\n  styleUrl: './app.component.scss'\n})\nexport class AppComponent {}\n",
+            "styleUrl": "./app.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<app-nav></app-nav>\n<main class=\"main\">\n  <router-outlet></router-outlet>\n</main>\n\n"
+        },
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-86e2311c54fbca7431c12e070d0fd5b0ebe343eec0553a392f182ba0e04a8f86613233d26ee47718fd0e7a65078f580c76a1fcc928ce55de81193d6618025bc4",
+            "file": "src/stories/button.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "storybook-button",
+            "styleUrls": [
+                "./button.css"
+            ],
+            "styles": [],
+            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
+            "templateUrl": [],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [
+                {
+                    "name": "backgroundColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nWhat background color to use\n",
+                    "description": "<p>What background color to use</p>\n",
+                    "line": 29,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "label",
+                    "defaultValue": "'Button'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "pos": 798,
+                            "end": 811,
+                            "flags": 16842752,
+                            "modifierFlagsCache": 0,
+                            "transformFlags": 0,
+                            "kind": 334,
+                            "tagName": {
+                                "pos": 799,
+                                "end": 807,
+                                "flags": 16842752,
+                                "modifierFlagsCache": 0,
+                                "transformFlags": 0,
+                                "kind": 80,
+                                "escapedText": "required"
+                            },
+                            "comment": ""
+                        }
+                    ],
+                    "rawdescription": "\n\nButton contents\n\n",
+                    "description": "<p>Button contents</p>\n",
+                    "line": 43,
+                    "type": "string",
+                    "decorators": []
+                },
+                {
+                    "name": "primary",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nIs this the principal call to action on the page?\n",
+                    "description": "<p>Is this the principal call to action on the page?</p>\n",
+                    "line": 23,
+                    "type": "boolean",
+                    "decorators": []
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "'medium'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nHow large should the button be?\n",
+                    "description": "<p>How large should the button be?</p>\n",
+                    "line": 35,
+                    "type": "\"small\" | \"medium\" | \"large\"",
+                    "decorators": []
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onClick",
+                    "defaultValue": "new EventEmitter<Event>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "rawdescription": "\n\nOptional click handler\n",
+                    "description": "<p>Optional click handler</p>\n",
+                    "line": 49,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "CommonModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { CommonModule } from '@angular/common';\nimport { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  standalone: true,\n  imports: [CommonModule],\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".storybook-button {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
+                    "styleUrl": "./button.css"
+                }
+            ],
+            "stylesData": "",
+            "extends": [],
+            "accessors": {
+                "classes": {
+                    "name": "classes",
+                    "getSignature": {
+                        "name": "classes",
+                        "type": "[]",
+                        "returnType": "string[]",
+                        "line": 51
+                    }
+                }
+            }
+        },
+        {
+            "name": "DeferredLoadingViewComponent",
+            "id": "component-DeferredLoadingViewComponent-ff85ce289fed637a44def126f81bd3d5fdf94ef926a335e5ada15f99f88bba7053222db6201e3437f1d95f67fa449596ee975ed1b75389919850cfb43804b40f",
+            "file": "src/app/deferred-loading-view/deferred-loading-view.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-deferred-loading-view",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./deferred-loading-view.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "config",
+                    "defaultValue": "{ count: 5, units: 'paragraphs' }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ILoremIpsumParams",
+                    "optional": false,
+                    "description": "",
+                    "line": 13
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "NgxLipsumComponent",
+                    "type": "component"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { ILoremIpsumParams } from 'lorem-ipsum';\nimport { Component } from '@angular/core';\nimport { NgxLipsumComponent } from 'ngx-lipsum';\n\n@Component({\n  selector: 'app-deferred-loading-view',\n  standalone: true,\n  imports: [NgxLipsumComponent],\n  templateUrl: './deferred-loading-view.component.html',\n  styleUrl: './deferred-loading-view.component.scss'\n})\nexport class DeferredLoadingViewComponent {\n  config: ILoremIpsumParams = { count: 5, units: 'paragraphs' }\n}\n",
+            "styleUrl": "./deferred-loading-view.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<h1>Deferred Loading</h1>\n\n<p>When using deferred loading, you should keep in mind, that screenreaders probably don't notice changes once the deferred block is loaded when already in focus.</p>\n\n<h2>on timer</h2>\n\n<p aria-atomic=\"true\" aria-live=\"polite\">\n@defer (on timer(5000)) {\n  <ngx-lipsum [config]=\"config\"></ngx-lipsum>\n} @placeholder() {\n  Placeholder...\n} @loading(minimum 3000) {\n  Loading...\n} @error {\n  Error...\n}\n</p>\n\n<h2>on viewport</h2>\n\n<p style=\"padding-bottom: 80vh; margin-bottom: 1rem; border-bottom: 1px solid black;\">Please scroll down below the bottom border to see deferred loading on viewport in action.</p>\n\n<div aria-atomic=\"true\" aria-live=\"polite\">\n@defer (on viewport) {\n  <img src=\"https://dev-to-uploads.s3.amazonaws.com/uploads/articles/w1nzeme4ix1lgw38epwb.jpeg\" alt=\"a woman with her hands on her knees, appearing to be squinting at an object in the distance captioned When someone says they don't need web accessibility\" loading=\"lazy\" width=\"460\" height=\"603\">\n} @placeholder(minimum 3000) {\n  <div class=\"placeholder\" tabindex=\"0\"></div>\n}\n</div>\n"
+        },
+        {
+            "name": "HomeViewComponent",
+            "id": "component-HomeViewComponent-bcd37c53db0755d0ea48ff074beef2af302010592e52663a6697b8874c8e8489046dff053259c92cc92432001d4b8c19dab81f5bd4194f19f6d009e5cd34551c",
+            "file": "src/app/home-view/home-view.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-home-view",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./home-view.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-home-view',\n  standalone: true,\n  imports: [],\n  templateUrl: './home-view.component.html',\n  styleUrl: './home-view.component.scss'\n})\nexport class HomeViewComponent {\n}\n",
+            "styleUrl": "./home-view.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<img src=\"assets/logo.png\" alt=\"Angular Berlin Meetup Logo and slogan\">\n<h1>Hello, meetup people 👋🏼</h1>\n<p>Let's talk about accessibility and how Angular helps us to improve it.</p>\n\n<h2>Contact</h2>\n<ul>\n  <li><a href=\"mailto:mail@k9n.dev\" target=\"_blank\">Mail: mail&#64;k9n.dev</a></li>\n  <li><a href=\"https://github.com/d-koppenhagen\" target=\"_blank\">Github: d-koppenhagen</a></li>\n  <li><a href=\"https://twitter.com/d_koppenhagen\" target=\"_blank\">X (Twitter): d_koppenhagen</a></li>\n  <li><a href=\"https://linkedin.com/in/d-koppenhagen\" target=\"_blank\">LinkedIn: d-koppenhagen</a></li>\n  <li><a href=\"https://xing.com/profile/Danny_Koppenhagen\" target=\"_blank\">Xing: Danny_Koppenhagen</a></li>\n  <li><a href=\"https://techhub.social/@k9n\" target=\"_blank\">Mastodon: techhub.social/&#64;k9n</a></li>\n</ul>\n"
+        },
+        {
+            "name": "NavComponent",
+            "id": "component-NavComponent-f264d9c156aca1b5ef00255d9e740be9630f5173506db1360f6f9ac3ffb5f5ff380da8da4c1f7e9457c5fd5af1f93f1e8e4194429efe3cbfbe59a144b6adce18",
+            "file": "src/app/nav/nav.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-nav",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./nav.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "RouterLink"
+                },
+                {
+                    "name": "RouterLinkActive"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { RouterLink, RouterLinkActive } from '@angular/router';\n\n@Component({\n  selector: 'app-nav',\n  standalone: true,\n  imports: [RouterLink, RouterLinkActive],\n  templateUrl: './nav.component.html',\n  styleUrl: './nav.component.scss'\n})\nexport class NavComponent {\n}\n",
+            "styleUrl": "./nav.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "extends": [],
+            "templateData": "<nav>\n  <a\n    class=\"button\"\n    routerLink=\"/\"\n    routerLinkActive=\"active\"\n    [routerLinkActiveOptions]=\"{exact: true}\"\n    ariaCurrentWhenActive=\"page\"\n  >\n    Home\n  </a>\n  <a\n    class=\"button\"\n    routerLink=\"/deferred-loading\"\n    routerLinkActive=\"active\"\n    ariaCurrentWhenActive=\"page\"\n  >\n    Deferred Loading\n  </a>\n  <a\n    class=\"button\"\n    routerLink=\"/track\"\n    routerLinkActive=\"active\"\n    ariaCurrentWhenActive=\"page\"\n  >\n    Track List Items\n  </a>\n  <a\n    class=\"button\"\n    routerLink=\"/alerts\"\n    routerLinkActive=\"active\"\n    ariaCurrentWhenActive=\"page\"\n  >\n    Alerts\n  </a>\n  <a\n    class=\"button\"\n    routerLink=\"/admin\"\n    routerLinkActive=\"active\"\n    ariaCurrentWhenActive=\"page\"\n  >\n    Administration\n  </a>\n</nav>\n"
+        },
+        {
+            "name": "RemoveAlertDialogComponent",
+            "id": "component-RemoveAlertDialogComponent-3f4f589175e307fa1144c479e0444afc3156a3faa370d9c5d80c364c81d3302a382acb2766d5e8a21afa3b30df877cb83c395c26975d08676892941f0ad8b752",
+            "file": "src/app/remove-alert-dialog/remove-alert-dialog.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-remove-alert-dialog",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./remove-alert-dialog.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "data",
+                    "defaultValue": "inject(DIALOG_DATA)",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type",
+                    "optional": false,
+                    "description": "",
+                    "line": 12
+                },
+                {
+                    "name": "dialogRef",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "DialogRef<boolean>",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        125
+                    ]
+                }
+            ],
+            "methodsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';\nimport { Component, inject } from '@angular/core';\n\n@Component({\n  selector: 'app-remove-alert-dialog',\n  standalone: true,\n  imports: [],\n  templateUrl: './remove-alert-dialog.component.html',\n  styleUrl: './remove-alert-dialog.component.scss'\n})\nexport class RemoveAlertDialogComponent {\n  data: { title: string } = inject(DIALOG_DATA)\n  constructor(\n    public dialogRef: DialogRef<boolean>,\n  ) {}\n}\n",
+            "styleUrl": "./remove-alert-dialog.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "dialogRef",
+                        "type": "DialogRef<boolean>",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 12,
+                "jsdoctags": [
+                    {
+                        "name": "dialogRef",
+                        "type": "DialogRef<boolean>",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "extends": [],
+            "templateData": "<header>\n  <h1>Delete alert</h1>\n</header>\n<main>\n  <p>Do you really want to delete the \"{{ data.title }}\" alert?</p>\n</main>\n<footer>\n  <button (click)=\"dialogRef.close(true)\">OK</button>\n  <button (click)=\"dialogRef.close(false)\">Cancel</button>\n</footer>\n"
+        },
+        {
+            "name": "TrackViewComponent",
+            "id": "component-TrackViewComponent-8ec43ade2430f4eb99ca3b77cad7d38051d4dd24b70e23e555dcfeb9f0c40db5de4fb62247f19834d451eba30da98e13760c7be34cbe033426d7db20e9032333",
+            "file": "src/app/track-view/track-view.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-track-view",
+            "styleUrls": [],
+            "styles": [],
+            "templateUrl": [
+                "./track-view.component.html"
+            ],
+            "viewProviders": [],
+            "hostDirectives": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "items",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Item[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 24
+                },
+                {
+                    "name": "toggle",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 25
+                },
+                {
+                    "name": "values",
+                    "defaultValue": "['', '', '']",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 23
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "addItem",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 38,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "standalone": true,
+            "imports": [
+                {
+                    "name": "FormsModule",
+                    "type": "module"
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\n\ninterface Item {\n  id: number;\n  name: string;\n}\n\nconst fullNameItems: Item[] = [\n  { id: 3, name: 'Item #3' },\n  { id: 2, name: 'Item #2' },\n  { id: 1, name: 'Item #1' },\n];\n\n@Component({\n  selector: 'app-track-view',\n  standalone: true,\n  imports: [FormsModule],\n  templateUrl: './track-view.component.html',\n  styleUrl: './track-view.component.scss'\n})\nexport class TrackViewComponent {\n  values = ['', '', '']; // Werte der Eingabefelder (initial)\n  items: Item[]; // Array mit Werten für *ngFor\n  toggle: boolean;\n\n  constructor() {\n    this.items = fullNameItems;\n    this.toggle = false;\n    setInterval(() => {\n      if (this.items.length >= 50) {\n        this.items = [];\n      }\n      this.addItem();\n    }, 5000);\n  }\n\n  addItem() {\n    const num = this.items.length + 1;\n    this.toggle = !this.toggle;\n    this.items = [\n      { id: num, name: `Item #${num}` },\n\n      // with the following line will make the third column work as referecnes of the objects are kept\n      // ...this.items,\n\n      // with the follwoing line will make the third column not working as the references are not the same anymore (item === item  => false)\n      ...structuredClone(this.items),\n    ];\n  }\n}\n",
+            "styleUrl": "./track-view.component.scss",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 25
+            },
+            "extends": [],
+            "templateData": "<h1>Track Demo</h1>\n\n<p>\n  The example below shows the difference of tracking list options with\n  <code>$index</code> and an actual unique attribute. By tracking a unique\n  attribute, the object wont be completely new initialized. In fact, when the\n  array changes, the focus of elements will be restored/tracked correctly.\n</p>\n<p>\n  Please enter a text in one of the input fields on the left side. After a few\n  seconds, items will be added to the array of the list. Keep an eye on where\n  you entered your text. While entering and concurrently adding new fields, your\n  input moves into another field as only the <code>$index</code> is tracked. The\n  list on the right tracks a unique attribute (<code>item.id</code>). This\n  ensures, the focus does not accidentally move to another input event when the\n  list updates concurrently.\n</p>\n<p>\n  Every 5 seconds a new entry is inserted.\n</p>\n\n<form>\n  <fieldset>\n    <legend>Track: <code>$index</code></legend>\n    @for(item of items; track $index) {\n    <div class=\"row\">\n      <label class=\"col-sm-6 col-form-label\" [for]=\"'col-0-' + $index\">\n        {{ item.id }} | {{ item.name }}\n      </label>\n      <input [id]=\"'col-0-' + $index\" class=\"form-control\" />\n    </div>\n    }\n  </fieldset>\n\n  <fieldset>\n    <legend>Track: <code>item.id</code></legend>\n    @for(item of items; track item.id) {\n    <div class=\"row\">\n      <label class=\"col-sm-6 col-form-label\" [for]=\"'col-1-' + $index\">\n        {{ item.id }} | {{ item.name }}\n      </label>\n      <input [id]=\"'col-1-' + $index\" class=\"form-control\" />\n    </div>\n    }\n  </fieldset>\n\n  <fieldset>\n    <legend>Track: <code>item</code></legend>\n    @for(item of items; track item) {\n    <div class=\"row\">\n      <label class=\"col-sm-6 col-form-label\" [for]=\"'col-2-' + $index\">\n        {{ item.id }} | {{ item.name }}\n      </label>\n      <input [id]=\"'col-2-' + $index\" class=\"form-control\" />\n    </div>\n    }\n  </fieldset>\n</form>\n"
+        }
+    ],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "Alert",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/alert-region.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    politeness: 'assertive',\n    role: 'alert',\n    title: 'Critical Error',\n    description: 'The cluster is not reachable.',\n    timer: 500,\n    duration: 30000\n  },\n}"
+            },
+            {
+                "name": "appConfig",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/app.config.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "ApplicationConfig",
+                "defaultValue": "{\n  providers: [\n    provideAnimations(),\n    provideRouter(routes),\n    { provide: TitleStrategy, useClass: AppTitleStrategy },\n  ],\n}"
+            },
+            {
+                "name": "fullNameItems",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/track-view/track-view.component.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Item[]",
+                "defaultValue": "[\n  { id: 3, name: 'Item #3' },\n  { id: 2, name: 'Item #2' },\n  { id: 1, name: 'Item #1' },\n]"
+            },
+            {
+                "name": "Large",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    size: 'large',\n    label: 'Button',\n  },\n}"
+            },
+            {
+                "name": "Log",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/alert-region.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    politeness: 'off',\n    role: 'log',\n    title: 'Position',\n    description: 'Latitude: 52.51, Longitude 13.40',\n    timer: 500,\n    duration: 30000\n  },\n}"
+            },
+            {
+                "name": "Marquee",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/alert-region.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    politeness: 'polite',\n    role: 'marquee',\n    title: 'Angular Meetup 01-2024',\n    description: 'The Angular Meetup takes place from 16th January 2024 18:30h to 22:00h.',\n    timer: 500,\n    duration: 30000\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/alert-region.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<AlertRegionComponent>",
+                "defaultValue": "{\n  title: 'Example/AlertRegionComponent',\n  component: AlertRegionComponent,\n  tags: ['autodocs'],\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideAnimations()\n      ]\n    })\n  ],\n  render: (args: AlertRegionComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n  argTypes: {\n    politeness: {\n      control: 'select',\n      options: ['off', 'polite', 'assertive'],\n      defaultValue: 'polite'\n    },\n    role: {\n      control: 'select',\n      options: ['status', 'alert', 'marquee', 'log', 'progress', 'timer'],\n      defaultValue: 'status'\n    }\n  },\n}"
+            },
+            {
+                "name": "meta",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Meta<ButtonComponent>",
+                "defaultValue": "{\n  title: 'Example/Button',\n  component: ButtonComponent,\n  tags: ['autodocs'],\n  render: (args: ButtonComponent) => ({\n    props: {\n      backgroundColor: null,\n      ...args,\n    },\n  }),\n  argTypes: {\n    backgroundColor: {\n      control: 'color',\n    },\n  },\n}"
+            },
+            {
+                "name": "preview",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": ".storybook/preview.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Preview",
+                "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: \"^on[A-Z].*\" },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n  },\n}"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    primary: true,\n    label: 'Button',\n  },\n}"
+            },
+            {
+                "name": "Progress",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/alert-region.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    politeness: 'polite',\n    role: 'progress',\n    title: 'Boot Progress',\n    description: 'System started. User script loaded.',\n    timer: 500,\n    duration: 30000\n  },\n}"
+            },
+            {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    label: 'Button',\n  },\n}"
+            },
+            {
+                "name": "Small",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    size: 'small',\n    label: 'Button',\n  },\n}"
+            },
+            {
+                "name": "Status",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/alert-region.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    politeness: 'polite',\n    role: 'status',\n    title: 'New PR',\n    description: 'A new PR has been opened by ...',\n    timer: 500,\n    duration: 30000\n  },\n}"
+            },
+            {
+                "name": "Timer",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/alert-region.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  args: {\n    politeness: 'polite',\n    role: 'timer',\n    title: 'Shutdown',\n    description: 'System shuts down in ~28 seconds.',\n    timer: 500,\n    duration: 30000\n  },\n}"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "Alert",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "literal type",
+                "file": "src/app/alert.service.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 187
+            },
+            {
+                "name": "Role",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "\"status\" | \"alert\" | \"marquee\" | \"log\" | \"progress\" | \"timer\"",
+                "file": "src/app/alert.service.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 192
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<AlertRegionComponent>",
+                "file": "src/stories/alert-region.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<ButtonComponent>",
+                "file": "src/stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "",
+                "kind": 183
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/stories/alert-region.stories.ts": [
+                {
+                    "name": "Alert",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/alert-region.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    politeness: 'assertive',\n    role: 'alert',\n    title: 'Critical Error',\n    description: 'The cluster is not reachable.',\n    timer: 500,\n    duration: 30000\n  },\n}"
+                },
+                {
+                    "name": "Log",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/alert-region.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    politeness: 'off',\n    role: 'log',\n    title: 'Position',\n    description: 'Latitude: 52.51, Longitude 13.40',\n    timer: 500,\n    duration: 30000\n  },\n}"
+                },
+                {
+                    "name": "Marquee",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/alert-region.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    politeness: 'polite',\n    role: 'marquee',\n    title: 'Angular Meetup 01-2024',\n    description: 'The Angular Meetup takes place from 16th January 2024 18:30h to 22:00h.',\n    timer: 500,\n    duration: 30000\n  },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/alert-region.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<AlertRegionComponent>",
+                    "defaultValue": "{\n  title: 'Example/AlertRegionComponent',\n  component: AlertRegionComponent,\n  tags: ['autodocs'],\n  decorators: [\n    applicationConfig({\n      providers: [\n        provideAnimations()\n      ]\n    })\n  ],\n  render: (args: AlertRegionComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n  argTypes: {\n    politeness: {\n      control: 'select',\n      options: ['off', 'polite', 'assertive'],\n      defaultValue: 'polite'\n    },\n    role: {\n      control: 'select',\n      options: ['status', 'alert', 'marquee', 'log', 'progress', 'timer'],\n      defaultValue: 'status'\n    }\n  },\n}"
+                },
+                {
+                    "name": "Progress",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/alert-region.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    politeness: 'polite',\n    role: 'progress',\n    title: 'Boot Progress',\n    description: 'System started. User script loaded.',\n    timer: 500,\n    duration: 30000\n  },\n}"
+                },
+                {
+                    "name": "Status",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/alert-region.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    politeness: 'polite',\n    role: 'status',\n    title: 'New PR',\n    description: 'A new PR has been opened by ...',\n    timer: 500,\n    duration: 30000\n  },\n}"
+                },
+                {
+                    "name": "Timer",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/alert-region.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    politeness: 'polite',\n    role: 'timer',\n    title: 'Shutdown',\n    description: 'System shuts down in ~28 seconds.',\n    timer: 500,\n    duration: 30000\n  },\n}"
+                }
+            ],
+            "src/app/app.config.ts": [
+                {
+                    "name": "appConfig",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/app.config.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "ApplicationConfig",
+                    "defaultValue": "{\n  providers: [\n    provideAnimations(),\n    provideRouter(routes),\n    { provide: TitleStrategy, useClass: AppTitleStrategy },\n  ],\n}"
+                }
+            ],
+            "src/app/track-view/track-view.component.ts": [
+                {
+                    "name": "fullNameItems",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/track-view/track-view.component.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Item[]",
+                    "defaultValue": "[\n  { id: 3, name: 'Item #3' },\n  { id: 2, name: 'Item #2' },\n  { id: 1, name: 'Item #1' },\n]"
+                }
+            ],
+            "src/stories/button.stories.ts": [
+                {
+                    "name": "Large",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    size: 'large',\n    label: 'Button',\n  },\n}"
+                },
+                {
+                    "name": "meta",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Meta<ButtonComponent>",
+                    "defaultValue": "{\n  title: 'Example/Button',\n  component: ButtonComponent,\n  tags: ['autodocs'],\n  render: (args: ButtonComponent) => ({\n    props: {\n      backgroundColor: null,\n      ...args,\n    },\n  }),\n  argTypes: {\n    backgroundColor: {\n      control: 'color',\n    },\n  },\n}"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    primary: true,\n    label: 'Button',\n  },\n}"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    label: 'Button',\n  },\n}"
+                },
+                {
+                    "name": "Small",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  args: {\n    size: 'small',\n    label: 'Button',\n  },\n}"
+                }
+            ],
+            ".storybook/preview.ts": [
+                {
+                    "name": "preview",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": ".storybook/preview.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Preview",
+                    "defaultValue": "{\n  parameters: {\n    actions: { argTypesRegex: \"^on[A-Z].*\" },\n    controls: {\n      matchers: {\n        color: /(background|color)$/i,\n        date: /Date$/i,\n      },\n    },\n  },\n}"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "src/app/alert.service.ts": [
+                {
+                    "name": "Alert",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "literal type",
+                    "file": "src/app/alert.service.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 187
+                },
+                {
+                    "name": "Role",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "\"status\" | \"alert\" | \"marquee\" | \"log\" | \"progress\" | \"timer\"",
+                    "file": "src/app/alert.service.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 192
+                }
+            ],
+            "src/stories/alert-region.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<AlertRegionComponent>",
+                    "file": "src/stories/alert-region.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ],
+            "src/stories/button.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<ButtonComponent>",
+                    "file": "src/stories/button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "",
+                    "kind": 183
+                }
+            ]
+        }
+    },
+    "routes": [],
+    "coverage": {
+        "count": 2,
+        "status": "low",
+        "files": [
+            {
+                "filePath": ".storybook/preview.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "preview",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/alert-details/alert-details.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertDetailsComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/alert-form/alert-form.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertFormComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/alert-list/alert-list.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertListComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/alert-region/alert-region.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertRegionComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/alert-table-entry/alert-table-entry.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertTableEntryComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/alert-table/alert-table.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertTableComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/alert.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AlertService",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/alerts-admin-view/alerts-admin-view.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertsAdminViewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/alerts-view/alerts-view.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AlertsViewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app-title-strategy.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "AppTitleStrategy",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/app.config.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "appConfig",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/deferred-loading-view/deferred-loading-view.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "DeferredLoadingViewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/home-view/home-view.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "HomeViewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/nav/nav.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/remove-alert-dialog/remove-alert-dialog.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "RemoveAlertDialogComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/track-view/track-view.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TrackViewComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/track-view/track-view.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Item",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/track-view/track-view.component.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "fullNameItems",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/alert-region.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Alert",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/alert-region.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Log",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/alert-region.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Marquee",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/alert-region.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/alert-region.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Progress",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/alert-region.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Status",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/alert-region.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Timer",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ButtonComponent",
+                "coveragePercent": 83,
+                "coverageCount": "5/6",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Large",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "meta",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Secondary",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Small",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            }
+        ]
+    }
+}

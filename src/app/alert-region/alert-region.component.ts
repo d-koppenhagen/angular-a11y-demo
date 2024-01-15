@@ -47,7 +47,6 @@ export class AlertRegionComponent {
     | 'progress'
     | 'timer' = 'status';
   @Output() deactivated = new EventEmitter<void>();
-  @Input() toastState: string = 'active'; // You can use this to trigger enter/leave animations
 
   readonly show$ = defer(() => {
     // Emit "true" after e.g. 3 seconds and announce
