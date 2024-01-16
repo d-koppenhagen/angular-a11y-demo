@@ -1,5 +1,8 @@
 # A11yDemo
 
+This repo conatins the Demo code for the talk I gave at the [Angular Berlin Meetup on 16th January 2024](https://techstories.dbsystel.de//blog/2024/2024-01-16-Accessibility-in-Angular.html).
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
 
 ## Development server
